@@ -1,0 +1,23 @@
+{
+	"name": "js-testing",
+	"version": "1.0.0",
+	"main": "app.js",
+	"scripts": {
+		"start": "webpack CoffeeApp.js --mode development --watch",
+		"test": "jest"
+	},
+	"keywords": [
+		"js",
+		"javascript",
+		"testing",
+		"test",
+		"unit",
+		"tests"
+	],
+	"licence": "ISC",
+	"devDependencies": {
+		"jest": "^23.6.0",
+		"webpack": "^4.20.2",
+		"webpack-cli": "^3.1.2"
+	}
+}
