@@ -26,7 +26,7 @@ rdl.question("Datele: ", function (data) {
     lati = elementss[1];
     file = elementss[2];
 
-    function interpretation(value) {
+    function build(value) {
         location = [...location, `${value[0]}`];
         latitude = [...latitude, `${value[1]}`];
         longitude = [...longitude, `${value[2]}`];
@@ -86,7 +86,7 @@ rdl.question("Datele: ", function (data) {
     fs.createReadStream(`${file}`)  
         .pipe(csv())
         .on('data', (row) => {
-            interpretation(row);
+            build(row);
             ct++;
              if ( ct === 6 ) {
                  showLocations();
