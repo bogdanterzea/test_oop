@@ -32,20 +32,10 @@ rdl.question("Datele: ", function (data) {
         longitude = [...longitude, `${value[2]}`];
     }
 
-    function deg2rad(deg) {
-        return deg * (Math.PI / 180);
-    }
-
     function getDistance(lat1, lon1, lat2, lon2) {
-        var R = 6371,// Radius of the earth in km
-            dLat = deg2rad(lat2 - lat1),// deg2rad below
-            dLon = deg2rad(lon2 - lon1),
-            a =
-                 Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                 Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                 Math.sin(dLon / 2) * Math.sin(dLon / 2),
-            c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
-            d = R * c;// Distance in km
+        var d;
+        d = Math.sqrt(Math.pow((lat1 - lat2), 2) + Math.pow((lon1 - lon2), 2));
+        d = Math.round( d * 10000) / 10000;
         return d;
     }
 
@@ -72,14 +62,14 @@ rdl.question("Datele: ", function (data) {
 
        for (i = 0; i < location.length; i++) {
            distance= [...distance, getDistance(longi,lati,latitude[i],longitude[i])];
-       }
-       for (i = 0; i < location.length; i++) {
            result.push({location: `${location[i]}`, distance: `${distance[i]}`})
        }
        var resultSorted= result.sort(sort_by('distance', false, parseInt));
 
        for(var i=0;i<3;i++){
-           console.log(`${resultSorted[i]['location']}, ${resultSorted[i]['distance']}`);
+           var distanceToShow = resultSorted[i]['distance'],
+               locationToShow = resultSorted[i]['location'];
+           console.log(`${locationToShow}, ${distanceToShow}`);
        }
    }
 
